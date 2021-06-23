@@ -1,6 +1,8 @@
-FROM ubuntu:latest
+FROM python:3
 
-RUN apt update && apt install -y wget
+COPY script.py /
+COPY requirements.txt /
 
-ENTRYPOINT wget "${1}/favicon.ico"
+RUN pip install -r requirements.txt
 
+ENTRYPOINT [ "python", "./script.py" ]
